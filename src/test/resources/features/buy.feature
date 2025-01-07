@@ -19,15 +19,13 @@ Scenario: Buy multiple products
     And I buy "Butter" with quantity 1
     Then total should be 221.00
 
-Scenario: Verify success
+Scenario: Verify enough
     When I buy "Bread" with quantity 2
-    And I have 5 "Bread" in stock
-    Then I should have 3 "Bread" in stock
+    Then the stock will have 3 "Bread"
 
 Scenario: Verify not enough
     When I buy too many "Bread" with quantity 10
-    And I have 5 "Bread" in stock
-    Then the stock have 5 "Bread" Not Enough
+    Then the stock will have 5 "Bread"
 
 Scenario Outline: Buy one product
    When I buy <product> with quantity <quantity>
