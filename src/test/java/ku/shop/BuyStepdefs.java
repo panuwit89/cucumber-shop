@@ -24,15 +24,15 @@ public class BuyStepdefs {
     }
 
     @When("I buy {string} with quantity {int}")
-    public void i_buy_with_quantity(String name, int quantity) throws NotEnoughBalanceException {
+    public void i_buy_with_quantity(String name, int quantity) throws NotEnoughProductException {
         Product prod = catalog.getProduct(name);
         order.addItem(prod, quantity);
     }
 
     @When("I buy too many {string} with quantity {int}")
-    public void i_buy_too_many_quantity(String name, int quantity) throws NotEnoughBalanceException {
+    public void i_buy_too_many_quantity(String name, int quantity) throws NotEnoughProductException {
         Product prod = catalog.getProduct(name);
-        assertThrows(NotEnoughBalanceException.class,
+        assertThrows(NotEnoughProductException.class,
                 () -> order.addItem(prod, quantity));
     }
 

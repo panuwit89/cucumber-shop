@@ -13,12 +13,12 @@ public class Order {
         this.date = LocalDateTime.now();
     }
 
-    public void addItem(Product prod, int quantity) throws NotEnoughBalanceException  {
+    public void addItem(Product prod, int quantity) throws NotEnoughProductException {
         if (quantity <= prod.getStock()) {
             items.add(new OrderItem(prod, quantity));
             prod.cutStock(quantity);
         } else {
-            throw new NotEnoughBalanceException();
+            throw new NotEnoughProductException();
         }
     }
 
