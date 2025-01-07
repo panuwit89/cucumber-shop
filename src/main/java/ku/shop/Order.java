@@ -14,8 +14,8 @@ public class Order {
     }
 
     public void addItem(Product prod, int quantity) throws NotEnoughBalanceException  {
-        items.add(new OrderItem(prod, quantity));
         if (quantity <= prod.getStock()) {
+            items.add(new OrderItem(prod, quantity));
             prod.cutStock(quantity);
         } else {
             throw new NotEnoughBalanceException();
