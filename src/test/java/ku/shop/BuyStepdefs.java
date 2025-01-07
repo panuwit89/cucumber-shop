@@ -23,12 +23,6 @@ public class BuyStepdefs {
         catalog.addProduct(name, price, stock);
     }
 
-    @When("I have {int} {string} in stock")
-    public void i_have_stock(int stock, String name) {
-        Product product = catalog.getProduct(name);
-        int productStock = product.getStock();
-    }
-
     @When("I buy {string} with quantity {int}")
     public void i_buy_with_quantity(String name, int quantity) throws NotEnoughBalanceException {
         Product prod = catalog.getProduct(name);
@@ -47,14 +41,8 @@ public class BuyStepdefs {
         assertEquals(total, order.getTotal());
     }
 
-    @Then("I should have {int} {string} in stock")
-    public void i_should_have_stock(int stockQuantity, String name) {
-        Product prod = catalog.getProduct(name);
-        assertEquals(stockQuantity, prod.getStock());
-    }
-
-    @Then("the stock have {int} {string} Not Enough")
-    public void the_stock_has_not_enough_sorry(int stockQuantity, String name) {
+    @Then("the stock will have {int} {string}")
+    public void the_stock_will_have(int stockQuantity, String name) {
         Product prod = catalog.getProduct(name);
         assertEquals(stockQuantity, prod.getStock());
     }
